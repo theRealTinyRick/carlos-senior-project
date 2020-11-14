@@ -1,18 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace CSP.UI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MainMenu : MonoBehaviour
     {
-        
-    }
+        [SerializeField]
+        private string startingSceneName;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void StartGame()
+        {
+            SceneManager.LoadScene(startingSceneName);
+        }
+
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }
+
