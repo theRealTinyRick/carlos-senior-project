@@ -32,14 +32,14 @@ public class movement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit; 
+            //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit hit; 
 
-            if (Physics.Raycast(ray, out hit, 100)) 
-            {
-                Interactables interactable1 = hit.collider.GetComponent<Interactables>();
+            //if (Physics.Raycast(ray, out hit, 100)) 
+            //{
+            //    Interactables interactable1 = hit.collider.GetComponent<Interactables>();
                     
-            }
+           // }
         }
     }
 }
