@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+namespace Service.Core.Framework
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Item : ScriptableObject
     {
-        
-    }
+        [SerializeField]
+        private string itemName;
+        public string ItemName
+        {
+            get
+            {
+                return itemName;
+            }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+
