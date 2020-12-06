@@ -2,8 +2,9 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-MyFirstGame/Library/*
-MyFirstGame/Temp/*
+/MyFirstGame/Library/
+MyFirstGame/Library/Artifacts
+MyFirstGame/Temp/
 MyFirstGame/Obj/
 MyFirstGame/Build/
 MyFirstGame/Builds/

@@ -2,11 +2,21 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Service.Core.Framework
+namespace Service.Framework.Inventory
 {
     [System.Serializable]
-    public class InventoryEvent : UnityEvent<Item, int> { }
+    public class Slot
+    {
+        [SerializeField]
+        public Item item;
+        
+        [SerializeField]
+        public int amount = 1;
+    }
 
+    [System.Serializable]
+    public class InventoryEvent : UnityEvent<Item, int> { }
+    
     public class InventoryManager : MonoBehaviour
     {
         private static InventoryManager instance;
@@ -18,9 +28,19 @@ namespace Service.Core.Framework
                 {
                     instance = FindObjectOfType<InventoryManager>();
                 }
+
+                if(instance == null)
+                {
+                    Debug.LogError("[InventoryManager]: There needs to be an inventory manager present in the scene.");
+                }
+
+
                 return instance;
             }
         }
+
+        [SerializeField]
+        private List<Slot> defaultInvetory = new List<Slot>();
 
         private Dictionary<Item, int> items = new Dictionary<Item, int>();
         public Dictionary<Item, int> Items
@@ -35,7 +55,7 @@ namespace Service.Core.Framework
             }
         }
 
-       [SerializeField]
+        [SerializeField]
         public InventoryEvent itemAddedEvent = new InventoryEvent();
         
         [SerializeField]
@@ -44,6 +64,12 @@ namespace Service.Core.Framework
         private void Awake()
         {
             instance = this;
+            foreach (Slot _slot in defaultInvetory)
+            {
+                Items.Add(_slot.item, _slot.amount);
+                itemAddedEvent.Invoke(_slot.item, _slot.amount);
+            }
+
         }
 
         public void AddItem(Item item, int amount = 1)
@@ -85,6 +111,16 @@ namespace Service.Core.Framework
 
                 itemRemovedEvent.Invoke(item, _amount);
             }
+        }
+
+        public bool HasItem(Item item)
+        {
+            if(item != null)
+            {
+                return Items.ContainsKey(item) && Items[item] > 0;
+            }
+
+            return false;
         }
     }
 }

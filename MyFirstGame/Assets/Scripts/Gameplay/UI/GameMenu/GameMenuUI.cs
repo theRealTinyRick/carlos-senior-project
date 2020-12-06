@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CSP.UI.GameMenu
+namespace Gameplay.UI.GameMenu
 {
     public class GameMenuUI : MonoBehaviour
     {

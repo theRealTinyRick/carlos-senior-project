@@ -1,45 +1,57 @@
-﻿
-using UnityEngine;
-
+﻿using UnityEngine;
 public class movement : MonoBehaviour
 {
- 
-    public Rigidbody rb;  
+    [SerializeField]
+    private Camera cam;
 
-    public float forwardForce = 1000f;
-    public float sideForce = 750f;
-    // Update is called once per frame
-    void FixedUpdate()
-    {  
-        if(Input.GetKey("a"))
+    [SerializeField]
+    private Rigidbody rigidbody;
+
+    public float moveSpeed = 5;
+
+    private void Start()
+    {
+        if (cam == null)
         {
-            rb.AddForce(0,0,forwardForce * Time.deltaTime);
-        }
-        
-        if(Input.GetKey("d"))
-        {
-           rb.AddForce(0,0,-forwardForce * Time.deltaTime); 
+            cam = FindObjectOfType<Camera>();
+            if (cam == null)
+            {
+                Debug.LogError("No camera found.");
+            }
         }
 
-        if(Input.GetKey("w")) {
-            rb.AddForce(sideForce * Time.deltaTime,0,0);
-        
-        }
-        if(Input.GetKey("s")) 
+        if (rigidbody == null)
         {
-            rb.AddForce(-sideForce * Time.deltaTime,0,0);
-        }    
+            rigidbody = GetComponent<Rigidbody>();
+            if (rigidbody == null)
+            {
+                Debug.LogError("No rigidbody found.");
+            }
+        }
+    }
 
+    private void Update()
+    {
         if (Input.GetMouseButtonDown(0))
         {
-            //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            //RaycastHit hit; 
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            //if (Physics.Raycast(ray, out hit, 100)) 
-            //{
-            //    Interactables interactable1 = hit.collider.GetComponent<Interactables>();
-                    
-           // }
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                Interactables interactable1 = hit.collider.GetComponent<Interactables>();
+                Debug.Log("Hit something.");
+            }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 _right = Input.GetAxis("Vertical") * transform.right;
+        Vector3 _forward = -Input.GetAxis("Horizontal") * transform.forward;
+        Vector3 _moveDir = _right + _forward;
+        _moveDir = new Vector3(_moveDir.x * moveSpeed, rigidbody.velocity.y, _moveDir.z * moveSpeed);
+        
+        rigidbody.velocity = _moveDir;
     }
 }

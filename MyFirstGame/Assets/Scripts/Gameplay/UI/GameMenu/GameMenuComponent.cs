@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CSP.UI.GameMenu
+namespace Gameplay.UI.GameMenu
 {
     public class GameMenuComponent : MonoBehaviour
     {

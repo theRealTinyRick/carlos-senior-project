@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-namespace Service.Core.Framework
+namespace Service.Framework.Inventory
 {
+    [CreateAssetMenu(fileName = "NewItem", menuName = "Game/Create New Item", order = 1)]
     public class Item : ScriptableObject
     {
         [SerializeField]
@@ -16,6 +16,15 @@ namespace Service.Core.Framework
             }
         }
 
+        [SerializeField]
+        private Sprite icon;
+        public Sprite Icon
+        {
+            get
+            {
+                return icon;
+            }
+        }
     }
 }
 
