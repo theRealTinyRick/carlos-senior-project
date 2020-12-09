@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ae07365ca3baa4ba565e577c3031ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingSceneName: GameScene
+  startingSceneName: GameLearning
 --- !u!1 &1180788209188993271
 GameObject:
   m_ObjectHideFlags: 0
