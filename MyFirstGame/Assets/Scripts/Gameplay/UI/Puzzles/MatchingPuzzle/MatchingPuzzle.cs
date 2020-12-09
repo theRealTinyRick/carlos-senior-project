@@ -7,7 +7,7 @@ namespace Gameplay.UI.Puzzles
     [System.Serializable]
     public class MatchingPuzzleEvent : UnityEngine.Events.UnityEvent { }
 
-    public class MatchingPuzzle : MonoBehaviour
+    public class MatchingPuzzle : Puzzle
     {
         [SerializeField]
         private List<Tile> tiles = new List<Tile>();

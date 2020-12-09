@@ -11,6 +11,20 @@ namespace Gameplay.UI.GameMenu
         [SerializeField]
         private GameObject menuParent;
 
+        private static GameMenuUI instance;
+        public static GameMenuUI Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        private void Awake()
+        {
+            instance = this;
+        }
+
         public void OpenMenu()
         {
             if(menuParent != null)

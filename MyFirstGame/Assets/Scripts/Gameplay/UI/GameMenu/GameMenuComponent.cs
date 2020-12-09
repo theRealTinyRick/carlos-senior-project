@@ -9,27 +9,17 @@ namespace Gameplay.UI.GameMenu
         [SerializeField]
         private KeyCode menuKey = KeyCode.Space;
 
-        [SerializeField]
-        private GameObject menuPrefab;
-
-        private GameMenuUI spawnedMenu;
-
-        private void Awake()
-        {
-            if(menuPrefab != null)
-            {
-                spawnedMenu = Instantiate(menuPrefab).GetComponent<GameMenuUI>();
-                spawnedMenu.CloseMenu();
-            }
-        }
-
         private void Update()
         {
             if(Input.GetKeyDown(menuKey))
             {
-                if(spawnedMenu != null)
+                if(GameMenuUI.Instance != null)
                 {
-                    spawnedMenu.ToggleMenu();
+                    GameMenuUI.Instance.ToggleMenu();
+                }
+                else
+                {
+                    Debug.LogError("No game menu was found. Please ensure one is in the scene.");
                 }
             }
         }
